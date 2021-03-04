@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     pass
 
+  
 class Profile(models.Model):
     name = models.CharField(max_length=150)
     snippet = models.ForeignKey("Snippet", on_delete=models.CASCADE, related_name="snippet")
