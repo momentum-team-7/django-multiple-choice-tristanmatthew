@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('', views.index, name="home"),
+    path('profile_list', views.profile_list, name="profile-list"),
+    path('profile', views.profile, name="profile"),
+    path('snippet', views.snippet, name="snippet")
+
 ]
 
 if settings.DEBUG:
