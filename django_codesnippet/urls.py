@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from core import views
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +25,7 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('profile_list', views.profile_list, name="profile-list"),
     path('profile', views.profile, name="profile"),
-    path('snippet', views.snippet, name="snippet")
+    path('snippet', views.snippet, name="snippet"),
 
 ]
 
