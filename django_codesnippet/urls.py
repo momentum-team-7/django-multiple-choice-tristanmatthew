@@ -26,7 +26,6 @@ urlpatterns = [
     path('profile_list', views.profile_list, name="profile-list"),
     path('profile', views.profile, name="profile"),
     path('snippet', views.snippet, name="snippet"),
-    path('login/', LoginView.as_view(), name="login"),
 
 ]
 
