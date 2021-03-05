@@ -17,15 +17,17 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from core import views
-from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('', views.index, name="home"),
+    path('', views.snippet_list, name="home"),
     path('profile_list', views.profile_list, name="profile-list"),
     path('profile', views.profile, name="profile"),
-    path('snippet', views.snippet, name="snippet"),
+    path('snippet_list', views.snippet_list, name="snippet-list"),
+    path('snippet/new', views.add_snippet, name="add-snippet"),
+    path('snippets/<int:pk>/edit', views.edit_snippet, name="edit-snippet"),
+    path('snippets/<int:pk>/delete', views.delete_snippet, name="delete-snippet"),
 
 ]
 
