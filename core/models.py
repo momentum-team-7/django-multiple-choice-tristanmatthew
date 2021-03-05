@@ -20,3 +20,9 @@ class Snippet(models.Model):
 
     def __str__(self):
         return f"{self.code_desc} | {self.code_input} | {self.code_lang}"
+
+class Login(models.Model):
+    username = models.CharField(max_length=8)
+    email = models.CharField(max_length=40)
+    password = models.CharField(max_length=10)
+    
