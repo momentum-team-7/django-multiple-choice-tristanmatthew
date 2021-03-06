@@ -14,9 +14,10 @@ def profile_list(request):
     
 
 
-def profile(request):
-    user_profile = get_object_or_404(Profile, pk=pk)
-    return render(request, 'html/profile.html')
+def profile(request, pk):
+    profile = get_object_or_404(Profile, pk=pk)
+    snippets = Snippet.objects.all()
+    return render(request, 'html/profile.html', {'profile': profile, 'snippets': snippets})
 
 
 def add_profile(request):
@@ -33,7 +34,7 @@ def delete_profile(request):
 
 def snippet(request):
     snippet = Snippet.objects.all()
-    return render(request, 'html/snippets.html')
+    return render(request, 'html/snippets.html',)
 
 def snippet_list(request):
     snippets = Snippet.objects.all()
