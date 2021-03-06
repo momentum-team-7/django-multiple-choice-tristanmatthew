@@ -31,9 +31,9 @@ def delete_profile(request):
     pass
 
 
-def snippet(request):
+def snippets(request):
     snippet = Snippet.objects.all()
-    return render(request, 'html/snippets.html')
+    return render(request, 'html/snippets.html', {'snippet': snippet})
 
 def snippet_list(request):
     snippets = Snippet.objects.all()

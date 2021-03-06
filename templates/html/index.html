@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<h1>HomePage</h1>
-{% for snippet in snippets %}
-{{snippet}}
+<h1>View All Snippets</h1>
+{% for snippet in user.snippets.all %}
+    <div class="whole-snippet">
+        <p id="snip-desc">Code Description: {{snippet.snip_desc}}</p>
+        <p id="snip-input">Code Snippet: {{snippet.snip_input}}</p>
+    </div>
 {% endfor %}
 
 {% endblock %}

@@ -8,28 +8,17 @@ class User(AbstractUser):
 class Profile(models.Model):
     name = models.CharField(max_length=150)
     snippet = models.ForeignKey("Snippet", on_delete=models.CASCADE, related_name="snippet")
-    date_added = models.TimeField()
+    date_added = models.DateTimeField()
     
     def __str__(self):
         return f"{self.name} | {self.snippet} | {self.date_added}"
 
 class Snippet(models.Model):
-    Title = models.CharField(max_length=300)
-    Input = models.CharField(max_length=1500)
-    Language = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    snip_desc = models.CharField(max_length=300, null=True)
+    snip_lang = models.CharField(max_length=100, null=True)
+    snip_input = models.CharField(max_length=1500, null=True)
+    snip_added = models.DateTimeField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets')
 
     def __str__(self):
-        return self.Title
-
-class Login(models.Model):
-    username = models.CharField(max_length=8)
-    email = models.CharField(max_length=40)
-    password = models.CharField(max_length=10)
-
-    class Tag(models.Model):
-        pass
-
-
-
-    
+        return f"{self.snip_desc} | {self.snip_input} | {self.snip_lang}"
