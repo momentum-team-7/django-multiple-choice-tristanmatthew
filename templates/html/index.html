@@ -7,4 +7,8 @@
 {{snippet}}
 {% endfor %}
 
+<form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+  </form>
+
 {% endblock %}

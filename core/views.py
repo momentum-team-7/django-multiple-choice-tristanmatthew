@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Profile, Snippet
 from .forms import SnippetForm
+from django.views.generic import TemplateView, ListView
+from django.db.models import Q
 
 
 # Create your views here.
@@ -72,3 +74,14 @@ def delete_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
     snippet.delete()
     return HttpResponseRedirect('/')
+
+class SearchResultsView(ListView):
+    model = Snippet
+    template_name = 'html/search_results.html'
+    
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        snippet_list = Snippet.objects.filter(
+            Q(title__icontains=query) | Q(language__icontains=query)
+        )
+        return snippet_list

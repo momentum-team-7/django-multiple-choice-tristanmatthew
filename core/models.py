@@ -1,6 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+Languages = (
+    ('HTML', 'HTML'),
+    ('CSS', 'CSS'),
+    ('JavaScript', 'JavaScript'),
+    ('Python', 'Python'),
+    ('Django', 'Django')
+)
+
 class User(AbstractUser):
     pass
 
@@ -19,6 +27,11 @@ class Snippet(models.Model):
     language = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="snippets")
     date_added = models.DateTimeField(null=True)
+    tag = models.ManyToManyField('Tag', blank=True)
+    language = models.CharField(max_length=20, choices=Languages)
+    
+    class Meta:
+        verbose_name_plural = "snippets"
 
     def __str__(self):
         return self.title
@@ -29,7 +42,11 @@ class Login(models.Model):
     password = models.CharField(max_length=10)
 
 class Tag(models.Model):
-    pass
+    tag = models.CharField(max_length=60, unique=True)
+    language = models.CharField(max_length=20, choices=Languages)
+    
+    def __str__(self):
+        return self.tag
 
 
 
