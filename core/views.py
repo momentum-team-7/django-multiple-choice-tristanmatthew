@@ -43,6 +43,14 @@ def snippet_list(request):
     return render(request, 'html/index.html',{'snippets': snippets})
 
 
+def save_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    snippet.pk=None
+    snippet.user = request.user
+    snippet.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 def add_snippet(request):
     if request.method == 'POST':
         form = SnippetForm(request.POST)
