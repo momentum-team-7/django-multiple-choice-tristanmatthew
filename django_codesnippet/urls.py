@@ -30,6 +30,7 @@ urlpatterns = [
     path('snippets/<int:pk>/edit', views.edit_snippet, name="edit-snippet"),
     path('snippets/<int:pk>/delete', views.delete_snippet, name="delete-snippet"),
     path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('error404/', views.error404, name="error404"),
 
 ]
 

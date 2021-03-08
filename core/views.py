@@ -10,6 +10,10 @@ from django.db.models import Q
 def index(request):
     return render(request, 'html/index.html')
 
+def error404(request):
+    return render(request, 'html/error404.html')
+
+
 def profile_list(request):
     profiles = Profile.objects.all()
     return render(request, 'html/profile_list.html')
