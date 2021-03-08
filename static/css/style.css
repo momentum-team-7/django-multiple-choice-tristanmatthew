@@ -29,7 +29,9 @@
     /* border: 2px solid pink; */
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: left;
+    width: 40rem;
     padding-left: 20px;
     padding-right: 100px;
     padding-top: 10px
@@ -66,6 +68,7 @@ li {
 .page-content {
     /* border: 2px solid blue; */
     padding-top: 10px;
+    width: 60rem;
     /* display: flex; */
 
 }
