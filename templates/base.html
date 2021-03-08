@@ -19,13 +19,15 @@
         <div class="nav1">
             <nav>
                 <li><a href="/">Snippet Feed</a></li>
-                <li><a href="profile">Your Profile</a><li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Your Profile</a><li>
+                {% endif %}
             </nav>
         </div>
         <div class="nav2">
             <nav>
-                <li><a href="/accounts/login">Sign In<a></li>
-                <li><a href="/accounts/register">Register</a></li>
+                <li><a href="/accounts/login/">Sign In<a></li>
+                <li><a href="/accounts/register/">Register</a></li>
             </nav>
         </div>
     </div>

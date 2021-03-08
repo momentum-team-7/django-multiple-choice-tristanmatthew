@@ -16,8 +16,8 @@ def profile_list(request):
     
 
 
-def profile(request, pk):
-    profile = get_object_or_404(Profile, pk=pk)
+def profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
     snippets = Snippet.objects.all()
     return render(request, 'html/profile.html', {'profile': profile, 'snippets': snippets})
 
