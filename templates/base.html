@@ -5,10 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+
+    <title>Snipp.it - a code snippet manager</title>
 </head>
 <body>
-    {% block content %}
-    {% endblock content %}
+    <div class="navigation">
+        <div>
+            <h2 class="terminal-prompt">Snipp.it</h2>
+        <div class="nav1">
+            <nav>
+                <li><a href="/">Snippet Feed</a></li>
+                <li><a href="profile">Your Profile</a><li>
+            </nav>
+        </div>
+        <div class="nav2">
+            <nav>
+                <li><a href="/accounts/login">Sign In<a></li>
+                <li><a href="/accounts/register">Register</a></li>
+            </nav>
+        </div>
+    </div>
+    <div class="page-content">
+        {% block content %}
+        {% endblock content %}
+    </div>
 </body>
 </html>
