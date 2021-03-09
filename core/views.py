@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Profile, Snippet
@@ -47,6 +48,14 @@ def snippet_list(request):
     return render(request, 'html/index.html',{'snippets': snippets})
 
 
+def save_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    snippet.pk=None
+    snippet.user = request.user
+    snippet.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 def add_snippet(request):
     if request.method == 'POST':
         form = SnippetForm(request.POST)
@@ -72,6 +81,15 @@ def edit_snippet(request, pk):
     else:
         form = SnippetForm(instance=snippet)
     return render(request, 'html/edit_snippet.html', {'form': form, 'snippet':snippet })
+
+@login_required
+def save_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    snippet.pk = None
+    snippet.user = request.user
+    snippet.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 
 def delete_snippet(request, pk):
