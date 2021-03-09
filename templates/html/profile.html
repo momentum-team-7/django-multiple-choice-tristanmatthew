@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>this will be a profile</h1>
+<h2>Welcome back, {{profile.name}}</h2>
+
+<div class="new-snip">
+    <p><a href="{% url 'add-snippet' %}">ADD NEW SNIPPET</a></p>
+</div>
+<div class="snip-container">
+    <p>Your Snippets:</p>
+        <div class="one-snip">
+            {% for snippet in snippets %}
+            {{snippet.title}} | {{snippet.code}} | {{snippet.language}} | {{snippet.date_added}}
+            <p><a href="{% url 'edit-snippet' pk=snippet.pk %}">EDIT SNIPPET</a></p>
+            <p><a href="{% url 'delete-snippet' pk=snippet.pk %}">DELETE SNIPPET</a></p>
+
+            {% endfor %}
+        </div>
+</div>
+
+
+{% endblock %}
