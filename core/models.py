@@ -42,8 +42,8 @@ class Login(models.Model):
     password = models.CharField(max_length=10)
 
 class Tag(models.Model):
-    tag = models.CharField(max_length=60, unique=True)
-    language = models.CharField(max_length=20, choices=Languages)
+    tag = models.CharField(max_length=60, unique=True, blank=True, null=True)
+    language = models.CharField(max_length=20, choices=Languages, blank=True, null=True)
     
     def __str__(self):
         return self.tag

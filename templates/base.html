@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+
+    <title>Snipp.it - a code snippet manager</title>
+
+    <link rel="stylesheet" href="{% static 'prism.css' %}">
+    <script src="{% static 'prism.js' %}" async></script>
+    
+
 </head>
 <body>
-<<<<<<< Updated upstream
-    {% block content %}
-    {% endblock content %}
-=======
+  {% block content %}
 <div class="snippbox">
     <div class="sign-in-out">
         <nav>
@@ -53,6 +61,5 @@
         </div>
     </div>
 </div>
->>>>>>> Stashed changes
 </body>
 </html>

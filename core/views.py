@@ -11,14 +11,18 @@ from django.db.models import Q
 def index(request):
     return render(request, 'html/index.html')
 
+def error404(request):
+    return render(request, 'html/error404.html')
+
+
 def profile_list(request):
     profiles = Profile.objects.all()
     return render(request, 'html/profile_list.html')
     
 
 
-def profile(request, pk):
-    profile = get_object_or_404(Profile, pk=pk)
+def profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
     snippets = Snippet.objects.all()
     return render(request, 'html/profile.html', {'profile': profile, 'snippets': snippets})
 

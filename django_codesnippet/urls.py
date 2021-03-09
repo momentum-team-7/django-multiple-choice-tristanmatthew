@@ -24,13 +24,16 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('', views.snippet_list, name="home"),
     path('profile_list', views.profile_list, name="profile-list"),
-    path('profile/<int:pk>', views.profile, name="profile"),
+    path('profile/', views.profile, name="profile"),
     path('snippet_list', views.snippet_list, name="snippet-list"),
     path('snippet/new', views.add_snippet, name="add-snippet"),
     path('snippets/<int:pk>/edit', views.edit_snippet, name="edit-snippet"),
     path('snippets/<int:pk>/delete', views.delete_snippet, name="delete-snippet"),
     path('snippet/<int:pk>/save/', views.save_snippet, name="save-snippet"),
     path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('error404/', views.error404, name="error404"),
+
+
 ]
 
 if settings.DEBUG:
