@@ -2,15 +2,6 @@
 
 {% block content %}
 
-
-<h3>Snipp Feed</h3>
-{% for snippet in snippets %}
-{{snippet}}
-{% endfor %}
-
-<form action="{% url 'search_results' %}" method="get">
-    <input name="q" type="text" placeholder="Search...">
-  </form>
 <div class="snip-info">
   <h2>Snipp.it | Public Feed</h2>
   <h4>Search, browse and save your favorite snippets here!</h4>
