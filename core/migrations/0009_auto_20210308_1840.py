@@ -10,11 +10,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='snippet',
-            name='tag',
-        ),
-        migrations.DeleteModel(
-            name='Tag',
-        ),
+        
     ]

@@ -6,7 +6,8 @@ Languages = (
     ('CSS', 'CSS'),
     ('JavaScript', 'JavaScript'),
     ('Python', 'Python'),
-    ('Django', 'Django')
+    ('Django', 'Django'),
+    ('Other', 'Other'),
 )
 
 class User(AbstractUser):
@@ -27,7 +28,6 @@ class Snippet(models.Model):
     language = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="snippets")
     date_added = models.DateTimeField(null=True)
-    tag = models.ManyToManyField('Tag', blank=True)
     language = models.CharField(max_length=20, choices=Languages)
     
     class Meta:
@@ -41,12 +41,6 @@ class Login(models.Model):
     email = models.CharField(max_length=40)
     password = models.CharField(max_length=10)
 
-class Tag(models.Model):
-    tag = models.CharField(max_length=60, unique=True, blank=True, null=True)
-    language = models.CharField(max_length=20, choices=Languages, blank=True, null=True)
-    
-    def __str__(self):
-        return self.tag
 
 
 
