@@ -5,12 +5,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+
+    <title>Snipp.it - a code snippet manager</title>
+
     <link rel="stylesheet" href="{% static 'prism.css' %}">
     <script src="{% static 'prism.js' %}" async></script>
-    <title>Document</title>
+    
+
 </head>
 <body>
-    {% block content %}
-    {% endblock content %}
+<div class="snippbox">
+    <div class="sign-in-out">
+        <nav>
+            {% if user.is_authenticated %}
+            <li><a href="/accounts/logout">Sign Out</a><li>
+            {% else %}
+            <li><a href="/accounts/login/">Sign In</a> |
+            <a href="/accounts/register/">Register</a></li>
+            {% endif %}
+        </nav>
+    </div>
+
+    <div class="center-box">
+        <div class="column-boxes">
+            <div class="navigation-box">
+                    <div class="logo-box">
+                        <h2 class="terminal-prompt">Snipp.it</h2>
+                        <h4 class="logo-tag">a code snippet manager</h4>
+                    </div>
+                    <div class="nav">
+                        <nav>
+                            <li><a href="/">Snipp.it Feed</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' %}">Your Profile</a><li>
+                            {% else %}
+                            <li><a href="{% url 'error404' %}">Your Profile</a><li>
+                            {% endif %}
+                        </nav>
+                    </div>
+            </div>
+            <div class="page-content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
