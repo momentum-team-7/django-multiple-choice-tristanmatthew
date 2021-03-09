@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import Profile, Snippet
 from .forms import SnippetForm, ProfileForm
 from django.views.generic import TemplateView, ListView
@@ -111,9 +111,20 @@ def save_snippet(request, pk):
 
 
 def delete_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    snippet.delete()
-    return HttpResponseRedirect('/')
+    print("delete")
+    print(request.headers.get('x-requested-with'))
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+
+        snippet = get_object_or_404(Snippet, pk=pk)
+        snippet.delete()
+        data = {
+            'deleted': 'YES'
+        }
+    else:
+        data = {
+            'deleted': 'NO'
+        }
+    return JsonResponse(data)
 
 class SearchResultsView(ListView):
     model = Snippet
