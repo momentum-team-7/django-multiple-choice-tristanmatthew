@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Profile, Snippet
-from .forms import SnippetForm
+from .forms import SnippetForm, ProfileForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 
@@ -28,14 +28,32 @@ def profile(request):
 
 
 def add_profile(request):
-    pass
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm()
+
+    return render(request, 'html/add_profile.html', {'form': form})
 
 
-def edit_profile(request):
-    pass
+def edit_profile(request, pk):
+    profile = get_object_or_404(Profile, pk=pk)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'html/edit_profile.html', {'form': form, 'profile':profile })
 
 
-def delete_profile(request):
+def delete_profile(request, pk):
     pass
 
 
