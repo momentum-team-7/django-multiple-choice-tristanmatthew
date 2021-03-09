@@ -6,7 +6,7 @@
   <h2>Snipp.it | Your Profile</h2>
   <h4>Welcome back, {{profile.name}}</h4>
 
-  <a href="">EDIT YOUR PROFILE</a> | <a href="{% url 'add-snippet' %}">ADD A NEW SNIPPET</a>
+  <a href="{% url 'edit-profile' pk=profile.pk %}">EDIT YOUR PROFILE</a> | <a href="{% url 'add-snippet' %}">ADD A NEW SNIPPET</a>
   <p>Your Snippets:</p>
 </div>
 <br>
