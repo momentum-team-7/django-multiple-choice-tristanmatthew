@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<<<<<<< Updated upstream
 <h1>HomePage</h1>
 {% for snippet in snippets %}
 {{snippet}}
@@ -10,5 +11,30 @@
 <form action="{% url 'search_results' %}" method="get">
     <input name="q" type="text" placeholder="Search...">
   </form>
+=======
+<div class="snip-info">
+  <h2>Snipp.it | Public Feed</h2>
+  <h4>Search, browse and save your favorite snippets here!</h4>
+  {% comment %} <form action="{% url 'search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+  </form> {% endcomment %}
+</div>
+<br>
+<div class="snip-container">
+  {% for snippet in snippets %}
+      <div class="save-button"> 
+        <a href="{% url 'save-snippet' pk=snippet.pk %}">SAVE SNIPPET</a>
+      </div>
+    <div class="terminal-timeline">
+      <div class="terminal-card">
+        <header>{{snippet.title}}</header>
+        <p class="terminal-alert terminal-alert-primary">{{snippet.language}}</p>
+        <p>Uploaded by: {{snippet.user}}</p>
+        <pre><code class="language-{{snippet.language}}">{{snippet.code}}</code></pre>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+>>>>>>> Stashed changes
 
 {% endblock %}

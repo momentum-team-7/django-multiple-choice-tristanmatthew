@@ -8,7 +8,51 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< Updated upstream
     {% block content %}
     {% endblock content %}
+=======
+<div class="snippbox">
+    <div class="sign-in-out">
+        <nav>
+            {% if user.is_authenticated %}
+            <li><a href="/accounts/logout">Sign Out</a><li>
+            {% else %}
+            <li><a href="/accounts/login/">Sign In</a> |
+            <a href="/accounts/register/">Register</a></li>
+            {% endif %}
+        </nav>
+    </div>
+
+    <div class="center-box">
+        <div class="column-boxes">
+            <div class="navigation-box">
+                    <div class="logo-box">
+                        <h2 class="terminal-prompt">Snipp.it</h2>
+                        <h4 class="logo-tag">a code snippet manager</h4>
+                    </div>
+                    <div class="nav">
+                        <nav>
+                            <li><a href="/">Snipp.it Feed</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' %}">Your Profile</a><li>
+                            {% else %}
+                            <li><a href="{% url 'error404' %}">Your Profile</a><li>
+                            {% endif %}
+                        </nav>
+                    </div>
+                    <br>
+                    <form action="{% url 'search_results' %}" method="get">
+                    <input name="q" type="text" placeholder="Search for Snippets...">
+                    </form>
+            </div>
+            <div class="page-content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+</div>
+>>>>>>> Stashed changes
 </body>
 </html>

@@ -29,6 +29,7 @@ urlpatterns = [
     path('snippet/new', views.add_snippet, name="add-snippet"),
     path('snippets/<int:pk>/edit', views.edit_snippet, name="edit-snippet"),
     path('snippets/<int:pk>/delete', views.delete_snippet, name="delete-snippet"),
+    path('snippet/<int:pk>/save/', views.save_snippet, name="save-snippet"),
     path('search/', SearchResultsView.as_view(), name='search_results'),
 ]
 

@@ -23,7 +23,7 @@ class Profile(models.Model):
 
 class Snippet(models.Model):
     title = models.CharField(max_length=300)
-    code = models.CharField(max_length=1500)
+    code = models.TextField(max_length=1500)
     language = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="snippets")
     date_added = models.DateTimeField(null=True)
