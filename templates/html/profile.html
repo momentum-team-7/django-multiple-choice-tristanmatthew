@@ -11,7 +11,10 @@
 </div>
 <br>
 <div class="snip-container">
-    {% for snippet in user.snippets.all %}
+
+    {% for snippet in snippets %}
+
+   
     <div>
       <div class="edit-delete-button">
         <a href="{% url 'edit-snippet' pk=snippet.pk %}">EDIT SNIPPET</a> |
