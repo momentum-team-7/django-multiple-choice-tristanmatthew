@@ -17,10 +17,10 @@ class User(AbstractUser):
 class Profile(models.Model):    
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     name = models.CharField(max_length=150)
-    date_added = models.TimeField()
+    
     
     def __str__(self):
-        return f"{self.name} | {self.date_added}"
+        return f"{self.name}"
 
 class Snippet(models.Model):
     title = models.CharField(max_length=300)
