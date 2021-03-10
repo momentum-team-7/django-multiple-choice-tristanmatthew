@@ -15,7 +15,7 @@
     {% for snippet in snippets %}
 
    
-    <div>
+    <div class="one-snip">
       <div class="edit-delete-button">
         <a href="{% url 'edit-snippet' pk=snippet.pk %}">EDIT SNIPPET</a> |
         <button class="delete-snippet" id="{{snippet.pk}}">DELETE SNIPPET</button>
