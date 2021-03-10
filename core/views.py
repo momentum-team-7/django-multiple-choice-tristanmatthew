@@ -66,12 +66,12 @@ def snippet_list(request):
     return render(request, 'html/index.html',{'snippets': snippets})
 
 
-def save_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    snippet.pk=None
-    snippet.user = request.user
-    snippet.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+# def save_snippet(request, pk):
+#     snippet = get_object_or_404(Snippet, pk=pk)
+#     snippet.pk=None
+#     snippet.user = request.user
+#     snippet.save()
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def add_snippet(request):
@@ -111,20 +111,21 @@ def save_snippet(request, pk):
         language = snippet.language
         snippet.save()
         pk = snippet.pk
+
         data = {
             'saved': 'YES',
-            'title': 'title',
-            'language': 'language',
-            'code': 'code',
-            'user': 'user',
-            'pk': 'pk',
+            'title': title,
+            'language': language,
+            'code': code,
+            'user': request.user.username,
+            'pk': pk,
         }
     else:
         data = {
             'saved': 'NO'
         }
 
-    return JasonResponse(data)
+    return JsonResponse(data)
 
 
 @login_required
