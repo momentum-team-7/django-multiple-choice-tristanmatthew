@@ -23,7 +23,7 @@ def profile_list(request):
 
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
-    snippets = Snippet.objects.all()
+    snippets = Snippet.objects.filter(user=profile.user)
     return render(request, 'html/profile.html', {'profile': profile, 'snippets': snippets})
 
 
