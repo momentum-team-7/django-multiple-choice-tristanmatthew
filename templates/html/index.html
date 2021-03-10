@@ -12,8 +12,9 @@
 <br>
 <div class="snip-container">
   {% for snippet in snippets %}
+  <div>
       <div class="save-button"> 
-        <a href="{% url 'save-snippet' pk=snippet.pk %}">SAVE SNIPPET</a>
+        <button class="save-snippet" id="{{snippet.pk}}">SAVE SNIPPET</button>
       </div>
     <div class="terminal-timeline">
       <div class="terminal-card">
@@ -23,6 +24,7 @@
         <pre><code class="language-{{snippet.language}}">{{snippet.code}}</code></pre>
       </div>
     </div>
+  </div>
   {% endfor %}
 </div>
 
