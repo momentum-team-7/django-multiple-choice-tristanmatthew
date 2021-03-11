@@ -39,7 +39,7 @@ def add_profile(request):
 
     return render(request, 'html/add_profile.html', {'form': form})
 
-
+@login_required
 def edit_profile(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def edit_profile(request, pk):
         form = ProfileForm(instance=profile)
     return render(request, 'html/edit_profile.html', {'form': form, 'profile':profile })
 
-
+@login_required
 def delete_profile(request, pk):
     pass
 
@@ -65,15 +65,7 @@ def snippet_list(request):
     snippets = Snippet.objects.all()
     return render(request, 'html/index.html',{'snippets': snippets})
 
-
-# def save_snippet(request, pk):
-#     snippet = get_object_or_404(Snippet, pk=pk)
-#     snippet.pk=None
-#     snippet.user = request.user
-#     snippet.save()
-#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
+@login_required
 def add_snippet(request):
     if request.method == 'POST':
         form = SnippetForm(request.POST)
@@ -89,7 +81,7 @@ def add_snippet(request):
     return render(request, 'html/add_snippet.html', {'form': form})
     
 
-
+@login_required
 def edit_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
     if request.method == 'POST':
