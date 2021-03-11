@@ -78,6 +78,8 @@ def add_snippet(request):
     if request.method == 'POST':
         form = SnippetForm(request.POST)
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
             form.save()
             return HttpResponseRedirect('/')
 
@@ -125,7 +127,11 @@ def save_snippet(request, pk):
             'saved': 'NO'
         }
 
+
+    
+
     return JsonResponse(data)
+
 
 
 @login_required
