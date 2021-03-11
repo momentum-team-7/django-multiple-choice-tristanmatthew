@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Add Your Profile Details Below:</h1>
+<h1>Set up Your Profile Here:</h1>
 
 <form action= "{% url 'add-profile' %}" method = "post">
     {% csrf_token %}

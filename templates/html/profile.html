@@ -11,19 +11,24 @@
 </div>
 <br>
 <div class="snip-container">
+
     {% for snippet in snippets %}
+
+   
+    <div class="one-snip">
       <div class="edit-delete-button">
-        <a href="{% url 'edit-snippet' pk=snippet.pk %}">EDIT SNIPPET</a> |
-        <a href="{% url 'delete-snippet' pk=snippet.pk %}">DELETE SNIPPET</a>
+        <a href="{% url 'edit-snippet' pk=snippet.pk %}"><button class="edit-snippet">EDIT SNIPPET</button></a>
+        <button class="delete-snippet" id="{{snippet.pk}}">DELETE SNIPPET</button>
       </div>
       <div class="terminal-timeline">
         <div class="terminal-card">
           <header>{{snippet.title}}</header>
-          <p class="terminal-alert terminal-alert-primary">{{snippet.language}}</p>
-          <p>Uploaded by: {{snippet.user}}</p>
+          <p class="terminal-alert">Created By: {{snippet.user}}</p>
+          <p class="terminal-alert terminal-alert-primary">Language: {{snippet.language}}</p>
           <pre><code class="language-{{snippet.language}}">{{snippet.code}}</code></pre>
         </div>
-      </div>  
+      </div>
+    </div>
     
     {% endfor %}
 </div>

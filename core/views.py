@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import Profile, Snippet
 from .forms import SnippetForm, ProfileForm
 from django.views.generic import TemplateView, ListView
@@ -66,12 +66,12 @@ def snippet_list(request):
     return render(request, 'html/index.html',{'snippets': snippets})
 
 
-def save_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    snippet.pk=None
-    snippet.user = request.user
-    snippet.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+# def save_snippet(request, pk):
+#     snippet = get_object_or_404(Snippet, pk=pk)
+#     snippet.pk=None
+#     snippet.user = request.user
+#     snippet.save()
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def add_snippet(request):
@@ -104,20 +104,50 @@ def edit_snippet(request, pk):
 
 @login_required
 def save_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    snippet.pk = None
-    snippet.user = request.user
-    snippet.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        snippet = get_object_or_404(Snippet, pk=pk)
+        snippet.pk = None
+        snippet.user = request.user
+        title = snippet.title
+        code = snippet.code
+        language = snippet.language
+        snippet.save()
+        pk = snippet.pk
+
+        data = {
+            'saved': 'YES',
+            'title': title,
+            'language': language,
+            'code': code,
+            'user': request.user.username,
+            'pk': pk,
+        }
+    else:
+        data = {
+            'saved': 'NO'
+        }
+
 
     
 
+    return JsonResponse(data)
 
 
+
+@login_required
 def delete_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    snippet.delete()
-    return HttpResponseRedirect('/')
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+
+        snippet = get_object_or_404(Snippet, pk=pk)
+        snippet.delete()
+        data = {
+            'deleted': 'YES'
+        }
+    else:
+        data = {
+            'deleted': 'NO'
+        }
+    return JsonResponse(data)
 
 class SearchResultsView(ListView):
     model = Snippet
