@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .snippbox {
     /* border: 5px solid green; */
     padding: 10px;
@@ -46,6 +52,7 @@ li {
     padding: 0px;
 }
 
+
 .logo-box {
     /* border: 2px solid slategray; */
     border-bottom: 3px solid black;
@@ -83,19 +90,87 @@ li {
     padding-bottom: 10px;
 }
 
+.snip-container {
+    /* border: 2px solid blue; */
+    height: 40rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .edit-delete-button {
     /* border: 3px solid red; */
     display: flex;
     justify-content: flex-end;
-    padding-right: 10px;
+    /* padding-right: 10px; */
+    margin-bottom: 5px;
 }
 
 .save-button {
-    /* border: 3px solid red; */
+    /* border: 3px solid green; */
     display: flex;
     justify-content: flex-end;
-    padding-right: 10px;
+    /* padding-right: 10px; */
+    margin-bottom: 5px;
 }
+
+.save-snippet {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--invert-font-color);
+    padding: 5px;
+}
+
+.save-snippet:hover {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--invert-font-color);
+    color: var(--primary-color);
+    padding: 5px;
+}
+
+.edit-snippet {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--invert-font-color);
+    padding: 5px;
+    margin-right: 1px;
+}
+
+.edit-snippet:hover {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--invert-font-color);
+    color: var(--primary-color);
+    padding: 5px;
+    margin-right: 1px;
+}
+
+.delete-snippet {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--invert-font-color);
+    padding: 5px;
+    margin-left: 1px;
+}
+
+.delete-snippet:hover {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: var(--invert-font-color);
+    color: var(--primary-color);
+    padding: 5px;
+    margin-left: 1px;
+}
+
+
+/* .save-snippet:focus,
+.save-snippet:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    z-index: 2;
+} */
 
 .error {
     /* border: 2px solid plum; */
@@ -117,9 +192,11 @@ img {
     justify-content: center;
 
 }
-.snip-container {
-    /* border: 2px solid blue; */
-    height: 40rem;
+
+pre code {
     overflow-x: hidden;
-    overflow-y: auto;
+}
+
+code-toolbar {
+    padding: 0px;
 }
